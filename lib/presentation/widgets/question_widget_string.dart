@@ -5,7 +5,10 @@ import 'package:provider/src/provider.dart';
 
 class QuestionWidgetString extends StatefulWidget {
   const QuestionWidgetString(
-      {Key? key, required this.question, required this.controller,required this.last})
+      {Key? key,
+      required this.question,
+      required this.controller,
+      required this.last})
       : super(key: key);
   final Question question;
   final PageController controller;
@@ -75,20 +78,18 @@ class _QuestionWidgetStringState extends State<QuestionWidgetString> {
               widget.last
                   ? ElevatedButton(
                       onPressed: () {
-                        if(checkString(_controller.text)==true){
+                        if (checkString(_controller.text) == true) {
                           setState(() {
-                            _valid=true;
+                            _valid = true;
+                          });
+                        } else {
+                          setState(() {
+                            _valid = false;
                           });
                         }
-                        else{
-                          setState(() {
-                            _valid=false;
-                          });
-                        }
-                        if(_valid==true) {
+                        if (_valid == true) {
                           context.read<AppBloc>().add(FormSubmitted());
                         }
-
                       },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
@@ -97,17 +98,16 @@ class _QuestionWidgetStringState extends State<QuestionWidgetString> {
                       child: const Text('Submit'))
                   : ElevatedButton(
                       onPressed: () {
-                        if(checkString(_controller.text)==true){
+                        if (checkString(_controller.text) == true) {
                           setState(() {
-                            _valid=true;
+                            _valid = true;
+                          });
+                        } else {
+                          setState(() {
+                            _valid = false;
                           });
                         }
-                        else{
-                          setState(() {
-                            _valid=false;
-                          });
-                        }
-                        if(_valid==true) {
+                        if (_valid == true) {
                           widget.controller
                               .nextPage(duration: _kDuration, curve: _kCurve);
                         }

@@ -16,39 +16,42 @@ class HomeScreen extends StatelessWidget {
     final _controller = PageController();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Form'),leading: IconButton(
-        icon: const Icon(Icons.arrow_back_rounded),
-        onPressed: () {
-          _controller.previousPage(duration: _kDuration, curve: _kCurve);
-
-        },
-      ),
-        actions: [
-
-          IconButton(
-            icon: const Icon(Icons.arrow_forward),
+        appBar: AppBar(
+          title: const Text('Form'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_rounded),
             onPressed: () {
-              _controller.nextPage(duration: _kDuration, curve: _kCurve);
-
+              _controller.previousPage(duration: _kDuration, curve: _kCurve);
             },
           ),
-        ],),
-
-      body: BlocConsumer<AppBloc, AppState>(
-        listener: (context,state){
-          if(state.status==AppStatus.submitted){
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.arrow_forward),
+              onPressed: () {
+                _controller.nextPage(duration: _kDuration, curve: _kCurve);
+              },
+            ),
+          ],
+        ),
+        body: BlocConsumer<AppBloc, AppState>(listener: (context, state) {
+          if (state.status == AppStatus.submitted) {
             Navigator.of(context).pushReplacementNamed(SubmitScreen.route);
           }
-
-        },
-        builder: (context, state) {
+        }, builder: (context, state) {
           switch (state.status) {
             case AppStatus.initial:
               print(state.status);
               return const InitialWidget();
             case AppStatus.success:
               print(state.status);
-              return BlocProvider.value(value: context.read<AppBloc>(),child: SuccesStateWidget(controller:_controller,list:state.questionList,length: state.questionList.length,),);
+              return BlocProvider.value(
+                value: context.read<AppBloc>(),
+                child: SuccesStateWidget(
+                  controller: _controller,
+                  list: state.questionList,
+                  length: state.questionList.length,
+                ),
+              );
               break;
             case AppStatus.failure:
               print(state.status);
@@ -61,8 +64,6 @@ class HomeScreen extends StatelessWidget {
               break;
           }
           return const Text('text');
-        },
-      ),
-    );
+        }));
   }
 }

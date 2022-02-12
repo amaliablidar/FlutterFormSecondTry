@@ -18,6 +18,7 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<FormSubmitted>(_onFormSubmitted);
     on<NextButtonPressed>(_onNextButtonPressed);
     on<PrevButtonPressed>(_onPrevButtonPressed);
+
   }
 
   void _onQuestionFetched(QuestionFetched event, Emitter<AppState> emit) {
@@ -45,14 +46,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   void _onPrevButtonPressed(PrevButtonPressed event, Emitter<AppState> emit) {
     emit( const AppState(status: AppStatus.prev,));
+
   }
 
   List<Question> fetchQuestions() {
     Repository repo = Repository();
     return repo.questionList;
   }
-
-
 
 
 }

@@ -4,7 +4,6 @@ import 'package:formapp_part2/bloc/app_bloc.dart';
 import 'package:formapp_part2/presentation/screens/home_screen.dart';
 import 'package:formapp_part2/presentation/screens/submit_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'dataProvider/answers.dart';
 
 void main() {
@@ -30,6 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/':(context)=> HomeScreen(),
           SubmitScreen.route: (context)=> const SubmitScreen(),
+
         },
       ),
     );

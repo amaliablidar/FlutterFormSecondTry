@@ -14,6 +14,7 @@ class QuestionWidget extends StatefulWidget {
   final PageController controller;
   final bool lastPage;
 
+
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
 }
@@ -39,10 +40,13 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       case AnswerType.bool:
         return QuestionWidgetBool(question: widget.question,controller: widget.controller,last:widget.lastPage);
 
+
+
       case AnswerType.multiple:
       case AnswerType.dropdown:
       default:
         return QuestionWidgetMultiple(question:widget.question,controller:widget.controller,last:widget.lastPage);
+
 
     }
   }

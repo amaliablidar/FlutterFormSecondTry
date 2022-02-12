@@ -6,7 +6,10 @@ import 'package:provider/src/provider.dart';
 
 class QuestionWidgetMultiple extends StatefulWidget {
   const QuestionWidgetMultiple(
-      {Key? key, required this.question, required this.controller,required this.last})
+      {Key? key,
+      required this.question,
+      required this.controller,
+      required this.last})
       : super(key: key);
   final PageController controller;
   final Question question;
@@ -22,7 +25,6 @@ class _QuestionWidgetMultipleState extends State<QuestionWidgetMultiple> {
   static const _kDuration = Duration(milliseconds: 300);
   static const _kCurve = Curves.ease;
   late String answer;
-
 
   @override
   void initState() {
@@ -56,11 +58,11 @@ class _QuestionWidgetMultipleState extends State<QuestionWidgetMultiple> {
             value: dropdownValue,
             icon: const Icon(
               Icons.arrow_circle_down,
-              color:Color.fromRGBO(183,65,14,100),
+              color: Color.fromRGBO(183, 65, 14, 100),
             ),
             elevation: 16,
             style: const TextStyle(
-              color: Color.fromRGBO(183,65,14,100),
+              color: Color.fromRGBO(183, 65, 14, 100),
             ),
             underline: Container(
               height: 2,
@@ -69,14 +71,17 @@ class _QuestionWidgetMultipleState extends State<QuestionWidgetMultiple> {
             onChanged: (String? newValue) {
               setState(() {
                 dropdownValue = newValue!;
-                answer=dropdownValue;
+                answer = dropdownValue;
               });
             },
             items: questionLocal.possibleAnswers
                 ?.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
-                child: Text(value,textAlign: TextAlign.justify,),
+                child: Text(
+                  value,
+                  textAlign: TextAlign.justify,
+                ),
               );
             }).toList(),
           ),
@@ -93,29 +98,29 @@ class _QuestionWidgetMultipleState extends State<QuestionWidgetMultiple> {
                   },
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        const Color.fromRGBO(220, 174, 150, 100),
-                      )),
+                    const Color.fromRGBO(220, 174, 150, 100),
+                  )),
                   child: const Text('Prev')),
               widget.last
                   ? ElevatedButton(
-                  onPressed: () {
-                    context.read<AppBloc>().add(FormSubmitted());
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
+                      onPressed: () {
+                        context.read<AppBloc>().add(FormSubmitted());
+                      },
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
                         const Color.fromRGBO(220, 174, 150, 100),
                       )),
-                  child: const Text('Submit'))
+                      child: const Text('Submit'))
                   : ElevatedButton(
-                  onPressed: () {
-                    widget.controller
-                        .nextPage(duration: _kDuration, curve: _kCurve);
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
+                      onPressed: () {
+                        widget.controller
+                            .nextPage(duration: _kDuration, curve: _kCurve);
+                      },
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
                         const Color.fromRGBO(220, 174, 150, 100),
                       )),
-                  child: const Text('Next')),
+                      child: const Text('Next')),
             ],
           ),
         ),

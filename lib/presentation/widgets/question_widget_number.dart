@@ -5,7 +5,10 @@ import 'package:provider/src/provider.dart';
 
 class QuestionWidgetNumber extends StatefulWidget {
   const QuestionWidgetNumber(
-      {Key? key, required this.question, required this.controller,required this.last})
+      {Key? key,
+      required this.question,
+      required this.controller,
+      required this.last})
       : super(key: key);
 
   final Question question;
@@ -21,7 +24,7 @@ class _QuestionWidgetNumberState extends State<QuestionWidgetNumber> {
   late String answer;
   static const _kDuration = Duration(milliseconds: 300);
   static const _kCurve = Curves.ease;
-  bool _valid=true;
+  bool _valid = true;
 
   bool checkDouble(String value) {
     try {
@@ -34,8 +37,6 @@ class _QuestionWidgetNumberState extends State<QuestionWidgetNumber> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Column(
       children: [
         Container(
@@ -73,55 +74,51 @@ class _QuestionWidgetNumberState extends State<QuestionWidgetNumber> {
                   },
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
-                        const Color.fromRGBO(220, 174, 150, 100),
-                      )),
+                    const Color.fromRGBO(220, 174, 150, 100),
+                  )),
                   child: const Text('Prev')),
               widget.last
                   ? ElevatedButton(
-                  onPressed: () {
-                    if(checkDouble(_controller.text)==true){
-                      setState(() {
-                        _valid=true;
-
-                      });
-                    }
-                    else{
-                      setState(() {
-                        _valid=false;
-                      });
-                    }
-                    if(_valid==true) {
-                      context.read<AppBloc>().add(FormSubmitted());
-                    }
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
+                      onPressed: () {
+                        if (checkDouble(_controller.text) == true) {
+                          setState(() {
+                            _valid = true;
+                          });
+                        } else {
+                          setState(() {
+                            _valid = false;
+                          });
+                        }
+                        if (_valid == true) {
+                          context.read<AppBloc>().add(FormSubmitted());
+                        }
+                      },
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
                         const Color.fromRGBO(220, 174, 150, 100),
                       )),
-                  child: const Text('Submit'))
+                      child: const Text('Submit'))
                   : ElevatedButton(
-                  onPressed: () {
-                    if(checkDouble(_controller.text)==true){
-                      setState(() {
-                        _valid=true;
-
-                      });
-                    }
-                    else{
-                      setState(() {
-                        _valid=false;
-                      });
-                    }
-                    if(_valid==true) {
-                      widget.controller
-                          .nextPage(duration: _kDuration, curve: _kCurve);
-                    }
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
+                      onPressed: () {
+                        if (checkDouble(_controller.text) == true) {
+                          setState(() {
+                            _valid = true;
+                          });
+                        } else {
+                          setState(() {
+                            _valid = false;
+                          });
+                        }
+                        if (_valid == true) {
+                          widget.controller
+                              .nextPage(duration: _kDuration, curve: _kCurve);
+                        }
+                      },
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
                         const Color.fromRGBO(220, 174, 150, 100),
                       )),
-                  child: const Text('Next')),
+                      child: const Text('Next')),
             ],
           ),
         ),

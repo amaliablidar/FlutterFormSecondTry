@@ -8,6 +8,7 @@ class Repository {
     Question(question: 'What is your favorite color?', answerType: AnswerType.multiple,possibleAnswers: ['red','blue','pink','yellow','orange']),
     Question(question:'Do you like cats?', answerType:AnswerType.bool),
     Question(question:'How much money did you spend today?',answerType: AnswerType.double),
+
   ];
 
   List<Question> get questionList {

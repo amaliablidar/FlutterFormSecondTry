@@ -20,3 +20,4 @@ class NextButtonPressed extends AppEvent{
 class PrevButtonPressed extends AppEvent{
 
 }
+

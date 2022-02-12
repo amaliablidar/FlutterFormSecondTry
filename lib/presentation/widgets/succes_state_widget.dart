@@ -4,8 +4,8 @@ import 'package:formapp_part2/bloc/app_bloc.dart';
 import 'package:formapp_part2/dataProvider/model/question.dart';
 import 'package:formapp_part2/presentation/widgets/question_widget.dart';
 
-class SuccesStateWidget extends StatefulWidget {
-  const SuccesStateWidget(
+class SuccessStateWidget extends StatefulWidget {
+  const SuccessStateWidget(
       {Key? key,
       required this.controller,
       required this.list,
@@ -16,12 +16,10 @@ class SuccesStateWidget extends StatefulWidget {
   final int length;
 
   @override
-  _SuccesStateWidgetState createState() => _SuccesStateWidgetState();
+  _SuccessStateWidgetState createState() => _SuccessStateWidgetState();
 }
 
-class _SuccesStateWidgetState extends State<SuccesStateWidget> {
-  static const _kDuration = Duration(milliseconds: 300);
-  static const _kCurve = Curves.ease;
+class _SuccessStateWidgetState extends State<SuccessStateWidget> {
   bool lastPage = false;
 
   @override
@@ -29,11 +27,9 @@ class _SuccesStateWidgetState extends State<SuccesStateWidget> {
     return PageView.builder(
       onPageChanged: (index) {
         if (index == widget.length - 1) {
-
           setState(() {
-            lastPage=true;
+            lastPage = true;
           });
-
         }
       },
       controller: widget.controller,
@@ -42,7 +38,8 @@ class _SuccesStateWidgetState extends State<SuccesStateWidget> {
             value: context.read<AppBloc>(),
             child: QuestionWidget(
                 question: widget.list[position],
-                controller: widget.controller,lastPage:lastPage));
+                controller: widget.controller,
+                lastPage: lastPage));
       },
       itemCount: widget.list.length, // Can be null
     );

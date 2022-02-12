@@ -2,11 +2,10 @@ part of 'app_bloc.dart';
 
 enum AppStatus { initial, success, failure, submitted, next, prev }
 
-
-class AppState extends Equatable{
+class AppState extends Equatable {
   const AppState({
     this.status = AppStatus.initial,
-    this.questionList=const <Question>[],
+    this.questionList = const <Question>[],
   });
 
   final AppStatus status;
@@ -23,6 +22,5 @@ class AppState extends Equatable{
   }
 
   @override
-  List<Object?> get props => [status,questionList];
+  List<Object?> get props => [status, questionList];
 }
-

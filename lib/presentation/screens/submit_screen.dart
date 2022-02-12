@@ -15,9 +15,17 @@ class SubmitScreen extends StatelessWidget {
           children: const [
             Padding(
               padding: EdgeInsets.only(bottom: 10),
-              child: Icon(Icons.check_circle,color: Colors.green,size: 100,),
+              child: Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 100,
+              ),
             ),
-            Text('Your form was submitted successfully',style: TextStyle(fontSize: 30),textAlign: TextAlign.center,),
+            Text(
+              'Your form was submitted successfully',
+              style: TextStyle(fontSize: 30),
+              textAlign: TextAlign.center,
+            ),
           ],
         ),
       ),

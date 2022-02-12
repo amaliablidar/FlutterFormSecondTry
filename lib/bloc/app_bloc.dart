@@ -1,9 +1,5 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:formapp_part2/dataProvider/answers.dart';
-import 'package:formapp_part2/dataProvider/model/answer.dart';
 import 'package:formapp_part2/dataProvider/model/question.dart';
 import 'package:formapp_part2/dataProvider/repository.dart';
 import 'package:meta/meta.dart';
@@ -18,15 +14,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
     on<FormSubmitted>(_onFormSubmitted);
     on<NextButtonPressed>(_onNextButtonPressed);
     on<PrevButtonPressed>(_onPrevButtonPressed);
-
   }
 
   void _onQuestionFetched(QuestionFetched event, Emitter<AppState> emit) {
     try {
       if (state.status == AppStatus.initial) {
         final questionList = fetchQuestions();
-        emit(AppState(status: AppStatus.success, questionList: questionList,));
-
+        emit(AppState(
+          status: AppStatus.success,
+          questionList: questionList,
+        ));
       }
     } catch (_) {
       emit(const AppState(status: AppStatus.failure));
@@ -34,25 +31,25 @@ class AppBloc extends Bloc<AppEvent, AppState> {
   }
 
   void _onFormSubmitted(FormSubmitted event, Emitter<AppState> emit) {
-      emit( const AppState(status: AppStatus.submitted, ));
-
+    emit(const AppState(
+      status: AppStatus.submitted,
+    ));
   }
 
   void _onNextButtonPressed(NextButtonPressed event, Emitter<AppState> emit) {
-    emit( const AppState(status: AppStatus.next,));
-
-
+    emit(const AppState(
+      status: AppStatus.next,
+    ));
   }
 
   void _onPrevButtonPressed(PrevButtonPressed event, Emitter<AppState> emit) {
-    emit( const AppState(status: AppStatus.prev,));
-
+    emit(const AppState(
+      status: AppStatus.prev,
+    ));
   }
 
   List<Question> fetchQuestions() {
     Repository repo = Repository();
     return repo.questionList;
   }
-
-
 }

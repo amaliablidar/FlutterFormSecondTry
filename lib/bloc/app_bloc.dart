@@ -18,13 +18,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   void _onQuestionFetched(QuestionFetched event, Emitter<AppState> emit) {
     try {
-      if (state.status == AppStatus.initial) {
         final questionList = fetchQuestions();
         emit(AppState(
           status: AppStatus.success,
           questionList: questionList,
         ));
-      }
+
     } catch (_) {
       emit(const AppState(status: AppStatus.failure));
     }

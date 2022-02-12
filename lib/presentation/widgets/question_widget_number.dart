@@ -56,6 +56,7 @@ class _QuestionWidgetNumberState extends State<QuestionWidgetNumber> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
+            keyboardType: const TextInputType.numberWithOptions(decimal:true),
             controller: _controller,
             decoration: InputDecoration(
                 labelText: ('Enter your answer here'),
@@ -69,8 +70,8 @@ class _QuestionWidgetNumberState extends State<QuestionWidgetNumber> {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    widget.controller
-                        .previousPage(duration: _kDuration, curve: _kCurve);
+                    context.read<AppBloc>().add(PrevButtonPressed());
+
                   },
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
@@ -110,8 +111,8 @@ class _QuestionWidgetNumberState extends State<QuestionWidgetNumber> {
                           });
                         }
                         if (_valid == true) {
-                          widget.controller
-                              .nextPage(duration: _kDuration, curve: _kCurve);
+                          context.read<AppBloc>().add(NextButtonPressed());
+
                         }
                       },
                       style: ButtonStyle(

@@ -94,8 +94,7 @@ class _QuestionWidgetBoolState extends State<QuestionWidgetBool> {
           children: [
             ElevatedButton(
                 onPressed: () {
-                  widget.controller
-                      .previousPage(duration: _kDuration, curve: _kCurve);
+                  context.read<AppBloc>().add(PrevButtonPressed());
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
@@ -119,8 +118,8 @@ class _QuestionWidgetBoolState extends State<QuestionWidgetBool> {
                 : ElevatedButton(
                     onPressed: () {
                       if (_isPressedFalse == true || _isPressedTrue == true) {
-                        widget.controller
-                            .nextPage(duration: _kDuration, curve: _kCurve);
+                        context.read<AppBloc>().add(NextButtonPressed());
+
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }

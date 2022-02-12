@@ -6,12 +6,16 @@ import 'package:formapp_part2/presentation/widgets/initial_widget.dart';
 import 'package:formapp_part2/presentation/widgets/succes_state_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+  final _controller = PageController();
+  static const _kDuration = Duration(milliseconds: 300);
+  static const _kCurve = Curves.ease;
+  int currentPage = 0;
+
+
 
   @override
   Widget build(BuildContext context) {
-    final _controller = PageController();
-
     return Scaffold(
         appBar: AppBar(
           title: const Text('Form'),
@@ -20,6 +24,15 @@ class HomeScreen extends StatelessWidget {
           if (state.status == AppStatus.submitted) {
             Navigator.of(context).pushReplacementNamed(SubmitScreen.route);
           }
+          if(state.status==AppStatus.next){
+            _controller.nextPage(duration: _kDuration, curve: _kCurve);
+            context.read<AppBloc>().add(QuestionFetched());
+          }
+          if(state.status==AppStatus.prev){
+            _controller.previousPage(duration: _kDuration, curve: _kCurve);
+            context.read<AppBloc>().add(QuestionFetched());
+          }
+
         }, builder: (context, state) {
           switch (state.status) {
             case AppStatus.initial:
@@ -33,13 +46,11 @@ class HomeScreen extends StatelessWidget {
                   length: state.questionList.length,
                 ),
               );
-              break;
             case AppStatus.failure:
               return const Center(child: Text('Failed'));
             default:
-              break;
+              return const Text('Something');
           }
-          return const Text('text');
         }));
   }
 }

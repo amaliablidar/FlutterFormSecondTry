@@ -9,7 +9,9 @@ class SuccessStateWidget extends StatefulWidget {
       {Key? key,
       required this.controller,
       required this.list,
-      required this.length})
+      required this.length,
+
+      })
       : super(key: key);
   final PageController controller;
   final List<Question> list;
@@ -26,6 +28,7 @@ class _SuccessStateWidgetState extends State<SuccessStateWidget> {
   Widget build(BuildContext context) {
     return PageView.builder(
       onPageChanged: (index) {
+
         if (index == widget.length - 1) {
           setState(() {
             lastPage = true;

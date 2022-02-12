@@ -30,6 +30,7 @@ class _QuestionWidgetStringState extends State<QuestionWidgetString> {
       return false;
     }
     bool found = value.contains(RegExp(r'[0-9]'));
+    print(widget.last);
     return !found;
   }
 
@@ -54,6 +55,7 @@ class _QuestionWidgetStringState extends State<QuestionWidgetString> {
         Padding(
           padding: const EdgeInsets.all(8),
           child: TextField(
+            keyboardType: TextInputType.name,
             controller: _controller,
             decoration: InputDecoration(
                 labelText: ('Enter your answer here'),
@@ -67,8 +69,7 @@ class _QuestionWidgetStringState extends State<QuestionWidgetString> {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    widget.controller
-                        .previousPage(duration: _kDuration, curve: _kCurve);
+                    context.read<AppBloc>().add(PrevButtonPressed());
                   },
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
@@ -108,8 +109,7 @@ class _QuestionWidgetStringState extends State<QuestionWidgetString> {
                           });
                         }
                         if (_valid == true) {
-                          widget.controller
-                              .nextPage(duration: _kDuration, curve: _kCurve);
+                          context.read<AppBloc>().add(NextButtonPressed());
                         }
                       },
                       style: ButtonStyle(

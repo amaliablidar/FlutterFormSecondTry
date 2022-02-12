@@ -27,7 +27,8 @@ class _QuestionWidgetMultipleState extends State<QuestionWidgetMultiple> {
 
   @override
   void initState() {
-    questionLocal = widget.question;
+
+  questionLocal = widget.question;
     dropdownValue = questionLocal.possibleAnswers![0];
     super.initState();
   }
@@ -92,8 +93,8 @@ class _QuestionWidgetMultipleState extends State<QuestionWidgetMultiple> {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    widget.controller
-                        .previousPage(duration: _kDuration, curve: _kCurve);
+                    context.read<AppBloc>().add(PrevButtonPressed());
+
                   },
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(
@@ -112,8 +113,8 @@ class _QuestionWidgetMultipleState extends State<QuestionWidgetMultiple> {
                       child: const Text('Submit'))
                   : ElevatedButton(
                       onPressed: () {
-                        widget.controller
-                            .nextPage(duration: _kDuration, curve: _kCurve);
+                        context.read<AppBloc>().add(NextButtonPressed());
+
                       },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
